@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  /* Fondos y Estructura Principal */
+  --bg-primary: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass-hover: rgba(255, 255, 255, 0.9);
+  
+  /* Tipografía y Textos */
+  --foreground: #0f172a;
+  --text-muted: #334155;
+  --text-heading: #020617;
+  
+  /* Bordes y Efectos Liquid Glass */
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-border-hover: rgba(3, 105, 161, 0.4);
+  
+  /* Insignias y Badges */
+  --badge-bg: rgba(3, 105, 161, 0.08);
+  --badge-border: rgba(3, 105, 161, 0.25);
+  --badge-text: #0369a1;
+  
+  /* Botones Secundarios e Iconos */
+  --btn-sec-bg: rgba(255, 255, 255, 0.85);
+  --btn-sec-hover: rgba(241, 245, 249, 1);
+  --btn-sec-text: #0f172a;
+  --btn-sec-border: rgba(203, 213, 225, 0.9);
+  
+  /* Mega Menú, Tarjetas e Ítems */
+  --mega-bg: rgba(255, 255, 255, 0.85);
+  --item-bg: rgba(255, 255, 255, 0.65);
+  --item-hover-bg: rgba(3, 105, 161, 0.06);
+  --item-border: rgba(203, 213, 225, 0.7);
+
+  /* Tokens Exclusivos del Footer Liquid Glass */
+  --footer-bg: #f1f5f9;
+  --footer-border: rgba(203, 213, 225, 0.8);
+  --footer-card-bg: rgba(255, 255, 255, 0.7);
+  --mesh-opacity: 0.08;
+}
+
+.dark {
+  /* Fondos y Estructura Principal */
+  --bg-primary: #030712;
+  --bg-card: rgba(15, 23, 42, 0.6);
+  --bg-glass: rgba(15, 23, 42, 0.65);
+  --bg-glass-hover: rgba(30, 41, 59, 0.8);
+  
+  /* Tipografía y Textos */
+  --foreground: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-heading: #ffffff;
+  
+  /* Bordes y Efectos Glass */
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-hover: rgba(34, 211, 238, 0.4);
+  
+  /* Insignias y Badges */
+  --badge-bg: rgba(15, 23, 42, 0.6);
+  --badge-border: rgba(34, 211, 238, 0.4);
+  --badge-text: #67e8f9;
+  
+  /* Botones Secundarios e Iconos */
+  --btn-sec-bg: rgba(15, 23, 42, 0.7);
+  --btn-sec-hover: rgba(30, 41, 59, 0.9);
+  --btn-sec-text: #f8fafc;
+  --btn-sec-border: rgba(255, 255, 255, 0.15);
+  
+  /* Mega Menú, Tarjetas e Ítems */
+  --mega-bg: rgba(3, 7, 18, 0.92);
+  --item-bg: rgba(15, 23, 42, 0.5);
+  --item-hover-bg: rgba(6, 182, 212, 0.15);
+  --item-border: rgba(255, 255, 255, 0.08);
+
+  /* Tokens Exclusivos del Footer */
+  --footer-bg: #070a0f;
+  --footer-border: rgba(6, 182, 212, 0.2);
+  --footer-card-bg: rgba(13, 18, 30, 0.65);
+  --mesh-opacity: 0.18;
+}
+
+@theme inline {
+  /* Mapeo de Colores del Tema */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-card: var(--bg-card);
+  --color-foreground: var(--foreground);
+  --color-text-muted: var(--text-muted);
+  --color-text-heading: var(--text-heading);
+  --color-glass-border: var(--glass-border);
+  --color-badge-bg: var(--badge-bg);
+  --color-badge-border: var(--badge-border);
+  --color-badge-text: var(--badge-text);
+  --color-btn-sec-bg: var(--btn-sec-bg);
+  --color-btn-sec-border: var(--btn-sec-border);
+
+  /* Fuentes */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* EFECTOS LIQUID GLASS */
+.liquid-glass {
+  background: var(--footer-card-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04), inset 0 1px 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -5px rgba(3, 105, 161, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dark .liquid-glass {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark .liquid-glass:hover {
+  box-shadow: 0 12px 30px -5px rgba(6, 182, 212, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Footer Container */
+.footer-container {
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Animaciones */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
