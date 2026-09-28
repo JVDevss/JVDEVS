@@ -1,17 +1,11 @@
 import { IconType } from 'react-icons';
 import { 
-  HiOutlineCube, 
-  HiOutlineCpuChip, 
+  HiOutlineUserGroup, 
   HiOutlineShieldCheck, 
-  HiOutlineRocketLaunch 
+  HiOutlineClock,
+  HiOutlineChatBubbleLeftRight,
+  HiOutlineHeart
 } from 'react-icons/hi2';
-
-export interface AboutStat {
-  id: string;
-  value: string;
-  labelKey: string;
-  labelEn: string;
-}
 
 export interface AboutValue {
   id: string;
@@ -20,11 +14,6 @@ export interface AboutValue {
   descriptionKey: string;
   descriptionEn: string;
   Icon: IconType;
-}
-
-export interface TechPartner {
-  name: string;
-  logo: string;
 }
 
 export interface AboutFeature {
@@ -51,88 +40,83 @@ export interface AboutData {
   description1En: string;
   description2Key: string;
   description2En: string;
+  image?: string;
   missionVision: MissionVisionContent;
-  stats: AboutStat[];
   values: AboutValue[];
-  techPartners: TechPartner[];
 }
 
 export const aboutData: AboutData = {
   badgeKey: 'Sobre Nosotros',
   badgeEn: 'About Us',
-  titleKey: 'Ingeniería digital para la',
-  titleEn: 'Digital engineering for the',
-  highlightKey: 'próxima era de la web',
-  highlightEn: 'next era of the web',
-  description1Key: 'En JVDevs combinamos arquitectura de software de vanguardia, estética minimalista futurista e inteligencia artificial para crear productos digitales que destacan y escalan sin límites.',
-  description1En: 'At JVDevs, we combine cutting-edge software architecture, futuristic minimalist aesthetics, and artificial intelligence to create digital products that stand out and scale endlessly.',
-  description2Key: 'No solo construimos sitios web; creamos ecosistemas digitales optimizados para alta velocidad, conversión y experiencias de usuario memorables en cualquier dispositivo.',
-  description2En: 'We don’t just build websites; we engineer digital ecosystems optimized for high speed, conversion, and memorable user experiences across all devices.',
+  titleKey: 'Soluciones digitales para la',
+  titleEn: 'Digital solutions for the',
+  highlightKey: 'evolución de tu negocio',
+  highlightEn: 'evolution of your business',
+  description1Key: 'Desde 2026, JVDevs nace como una respuesta directa al estado actual de la tecnología en Venezuela. Ante la escasez de sistemas, aplicaciones y presencia digital sólida en el país, identificamos la oportunidad de unir la experiencia del Desarrollador Fullstack Senior Víctor Carrillo y la energía del Desarrollador Junior Jesús Boyer. Nuestro objetivo es ofrecer soluciones tecnológicas accesibles y de alto nivel para negocios, emprendimientos y empresas, impulsando al mismo tiempo el desarrollo digital nacional.',
+  description1En: 'Since 2026, JVDevs was born as a direct response to the current state of technology in Venezuela. Driven by the need for reliable systems, applications, and digital presence across the country, Senior Fullstack Developer Víctor Carrillo and Junior Developer Jesús Boyer joined forces. We provide high-quality digital solutions for local businesses, startups, and companies, while taking a step forward in national technological growth.',
+  description2Key: 'Brindamos un acompañamiento integral: desde páginas web y aplicaciones a medida hasta plataformas de gestión, automatización de procesos, chatbots y soporte técnico especializado para garantizar que cada proyecto funcione de forma continua y eficiente.',
+  description2En: 'We offer comprehensive support: from custom websites and tailored applications to management platforms, process automation, chatbots, and specialized technical support to ensure every project operates smoothly and efficiently.',
+  image: '/images/bg/bg.png',
   missionVision: {
-    missionKey: 'Reinventar la creación digital combinando estética futurista con código de ultra rendimiento, impulsando a las empresas a liderar en un entorno digital ultra competitivo.',
-    missionEn: 'Reinvent digital creation by combining futuristic aesthetics with ultra-performance code, empowering businesses to lead in an ultra-competitive digital environment.',
-    visionKey: 'Ser el estudio de ingeniería web y experiencia digital de referencia global, marcando los estándares en desarrollo fluido, aplicaciones IA y diseño de vanguardia.',
-    visionEn: 'Be the globally recognized web engineering and digital experience studio, setting the benchmark for smooth development, AI apps, and cutting-edge design.',
+    missionKey: 'Impulsar la transformación digital de negocios y empresas mediante herramientas tecnológicas fiables, accesibles y hechas a la medida, ayudando a modernizar la operativa local con un acompañamiento cercano y transparente.',
+    missionEn: 'Drive the digital transformation of local businesses and enterprises through reliable, accessible, and custom-built technology tools, helping modernize everyday operations with close and transparent support.',
+    visionKey: 'Convertirnos en un referente de desarrollo y software que demuestre el potencial del talento tecnológico nacional, creando productos duraderos que fortalezcan el tejido empresarial dentro y fuera del país.',
+    visionEn: 'Become a leading benchmark in software development that showcases national tech talent, creating long-lasting digital products that strengthen business operations locally and globally.',
     features: [
       {
-        keyEs: 'Desarrollo optimizado para Next.js 15+',
-        keyEn: 'Next.js 15+ Optimized Development',
+        keyEs: 'Desarrollo web a medida, SaaS y sistemas corporativos',
+        keyEn: 'Custom Web Development, SaaS & Enterprise Systems',
       },
       {
-        keyEs: 'Paginas web perzolizadas y modernas',
-        keyEn: 'Customized & Modern Websites',
+        keyEs: 'Automatización de procesos y desarrollo de chatbots',
+        keyEn: 'Process Automation & Chatbot Development',
       },
       {
-        keyEs: 'Sistemas de procesos y automatizaciones inteligentes',
-        keyEn: 'Intelligent Process Systems & Automations',
+        keyEs: 'Soporte técnico, mantenimiento de software y equipos',
+        keyEn: 'Technical Support, Software & Hardware Maintenance',
       },
     ],
   },
-  stats: [
-    { id: '01', value: '100%', labelKey: 'Uptime & Disponibilidad', labelEn: 'Uptime & Availability' },
-    { id: '02', value: '+15', labelKey: 'Proyectos Completados', labelEn: 'Projects Completed' },
-    { id: '03', value: '<100ms', labelKey: 'Latencia Promedio', labelEn: 'Average Latency' },
-    { id: '04', value: '24/7', labelKey: 'Monitoreo Proactivo', labelEn: 'Proactive Monitoring' },
-  ],
   values: [
     {
       id: 'v1',
-      titleKey: 'Diseño Holográfico & Glass',
-      titleEn: 'Holographic & Glass Design',
-      descriptionKey: 'Interfaces interactivas con estética moderna, micro-interacciones sutiles y efectos visuales de alta precisión.',
-      descriptionEn: 'Interactive interfaces with modern aesthetics, subtle micro-interactions, and high-precision visual effects.',
-      Icon: HiOutlineCube,
+      titleKey: 'Buena Atención & Flexibilidad',
+      titleEn: 'Great Service & Flexibility',
+      descriptionKey: 'Nos adaptamos a las necesidades y dinámicas de cada negocio, ofreciendo un trato cercano, claro y enfocado en solucionar problemas reales.',
+      descriptionEn: 'We adapt to the unique needs and dynamics of every business, offering a friendly, clear, and practical approach to solving real problems.',
+      Icon: HiOutlineHeart,
     },
     {
       id: 'v2',
-      titleKey: 'Arquitectura AI-Driven',
-      titleEn: 'AI-Driven Architecture',
-      descriptionKey: 'Integración fluida de modelos de inteligencia artificial y automatización para optimizar la eficiencia operativa.',
-      descriptionEn: 'Seamless integration of AI models and automation to optimize operational efficiency.',
-      Icon: HiOutlineCpuChip,
+      titleKey: 'Comunicación Fluida & Respeto',
+      titleEn: 'Fluid Communication & Respect',
+      descriptionKey: 'Mantenemos un diálogo honesto y constante durante todo el proceso para asegurar que el resultado coincida exactamente con lo acordado.',
+      descriptionEn: 'We maintain honest and constant communication throughout the process to ensure results align with expectations.',
+      Icon: HiOutlineChatBubbleLeftRight,
     },
     {
       id: 'v3',
-      titleKey: 'Seguridad & Rendimiento Max',
-      titleEn: 'Max Security & Performance',
-      descriptionKey: 'Código limpio, estándar Core Web Vitals al máximo y protección robusta en cada capa de la aplicación.',
-      descriptionEn: 'Clean code, maximum Core Web Vitals performance, and robust protection at every application layer.',
-      Icon: HiOutlineShieldCheck,
+      titleKey: 'Puntualidad & Compromiso',
+      titleEn: 'Punctuality & Commitment',
+      descriptionKey: 'Respetamos los tiempos de entrega acordados mediante una planificación organizada y trabajo constante.',
+      descriptionEn: 'We strictly respect agreed delivery timelines through organized planning and focused execution.',
+      Icon: HiOutlineClock,
     },
     {
       id: 'v4',
-      titleKey: 'Escalabilidad Ultra Rápida',
-      titleEn: 'Ultra-Fast Scalability',
-      descriptionKey: 'Sistemas preparados para soportar picos de tráfico masivo sin perder fluidez ni tiempo de respuesta.',
-      descriptionEn: 'Systems ready to handle massive traffic spikes without losing fluidity or response speed.',
-      Icon: HiOutlineRocketLaunch,
+      titleKey: 'Seguridad & Protección',
+      titleEn: 'Security & Protection',
+      descriptionKey: 'Desarrollamos con buenas prácticas para garantizar que la información y la estructura digital de tu negocio estén siempre protegidas.',
+      descriptionEn: 'We build using best practices to ensure your business data and digital infrastructure remain safe and protected.',
+      Icon: HiOutlineShieldCheck,
     },
-  ],
-  techPartners: [
-    { name: 'Next.js', logo: '/tech/nextjs.svg' },
-    { name: 'React', logo: '/tech/react.svg' },
-    { name: 'Tailwind CSS', logo: '/tech/tailwindcss.svg' },
-    { name: 'TypeScript', logo: '/tech/typescript.svg' },
-    { name: 'Node.js', logo: '/tech/nodejs.svg' },
+    {
+      id: 'v5',
+      titleKey: 'Atención Personalizada (Online o Presencial)',
+      titleEn: 'Tailored Support (Online or On-site)',
+      descriptionKey: 'Atendemos a nuestros clientes de forma directa, adaptándonos a reuniones virtuales o visitas presenciales según sea necesario.',
+      descriptionEn: 'We work directly with our clients, offering both virtual meetings and on-site support based on project requirements.',
+      Icon: HiOutlineUserGroup,
+    },
   ],
 };

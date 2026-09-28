@@ -7,7 +7,7 @@ export interface ProjectCategory {
 export interface PortfolioProject {
   id: string;
   slug: string;
-  category: 'web' | 'mobile' | 'ai' | 'fullstack';
+  category: 'web' | 'mobile' | 'automation' | 'fullstack';
   title: string;
   client: string;
   year: string;
@@ -44,17 +44,17 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   badgeKey: 'Portafolio',
   badgeEn: 'Portfolio',
-  titleKey: 'Soluciones digitales de',
-  titleEn: 'Digital solutions built with',
-  highlightKey: 'alto impacto y rendimiento',
-  highlightEn: 'high impact and performance',
-  descriptionKey: 'Explora nuestra selección de proyectos donde la arquitectura moderna, el rendimiento ultra rápido y el diseño futurista se unen.',
-  descriptionEn: 'Explore our curated projects where modern architecture, ultra-fast performance, and futuristic design converge.',
+  titleKey: 'Desarrollo y Soluciones Tecnológicas',
+  titleEn: 'Development and Technological Solutions',
+  highlightKey: 'de Nuestra Autoría',
+  highlightEn: 'Built by Us',
+  descriptionKey: 'Explora nuestra selección de proyectos donde la arquitectura moderna, el rendimiento ultra rápido y el diseño funcional se unen.',
+  descriptionEn: 'Explore our curated projects where modern architecture, ultra-fast performance, and functional design converge.',
   categories: [
     { key: 'all', labelEs: 'Todos', labelEn: 'All' },
     { key: 'web', labelEs: 'Web Apps', labelEn: 'Web Apps' },
     { key: 'mobile', labelEs: 'Mobile', labelEn: 'Mobile' },
-    { key: 'ai', labelEs: 'IA & Automation', labelEn: 'AI & Automation' },
+    { key: 'automation', labelEs: 'Automatización', labelEn: 'Automation' },
     { key: 'fullstack', labelEs: 'Full Stack', labelEn: 'Full Stack' },
   ],
   projects: [

@@ -3,17 +3,17 @@
 :root {
   /* Fondos y Estructura Principal */
   --bg-primary: #f8fafc;
-  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-card: rgba(255, 255, 255, 0.85);
   --bg-glass: rgba(255, 255, 255, 0.75);
-  --bg-glass-hover: rgba(255, 255, 255, 0.9);
+  --bg-glass-hover: rgba(255, 255, 255, 0.95);
   
   /* Tipografía y Textos */
-  --foreground: #0f172a;
-  --text-muted: #334155;
-  --text-heading: #020617;
+  --foreground: #020617;
+  --text-muted: #1e293b; /* Ajustado a Slate-800 para contraste óptimo sobre glass claro */
+  --text-heading: #0f172a;
   
   /* Bordes y Efectos Liquid Glass */
-  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(203, 213, 225, 0.6);
   --glass-border-hover: rgba(3, 105, 161, 0.4);
   
   /* Insignias y Badges */
@@ -49,7 +49,7 @@
   
   /* Tipografía y Textos */
   --foreground: #f8fafc;
-  --text-muted: #94a3b8;
+  --text-muted: #cbd5e1;
   --text-heading: #ffffff;
   
   /* Bordes y Efectos Glass */
