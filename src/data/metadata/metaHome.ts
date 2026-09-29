@@ -6,7 +6,7 @@ export const metaHome: Metadata = {
     template: "%s | JVDevs",
   },
   description:
-    "Estudio de desarrollo web, optimización SEO y diseño UI/UX. Creamos sitios web modernos, rápidos y adaptados a tus necesidades.",
+    "Estudio de desarrollo web, optimización SEO y diseño UI/UX. Creamos sitios web modernos, rápidos y adaptados a tus necesidades. ",
   keywords: [
     "Desarrollo Web",
     "Agencia Digital",
