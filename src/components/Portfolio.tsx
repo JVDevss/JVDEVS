@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/src/context/LanguageContext';
-import { portfolioData, PortfolioProject } from '@/src/data/portfolio/portfolioHome';
+import { portfolioData, PortfolioProject } from '@/src/data/Portfolio/portfolioHome';
 import { 
   HiOutlineArrowUpRight, 
   HiOutlineCodeBracket,
