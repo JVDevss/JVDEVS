@@ -57,10 +57,10 @@ export const heroHomeData: HeroSlide[] = [
     id: 2,
     bgImage: '/images/hero/home/hero2.jpg',
     es: {
-      badge: 'Arquitectura Cloud & Performance',
-      title: 'Optimizamos tu presencia con',
-      titleGradient: 'tecnología de ultra velocidad',
-      description: 'Diseñamos soluciones optimizadas para motores de búsqueda con tasas de conversión superiores y tiempos de carga instantáneos.',
+      badge: 'Sistemas Corporativos & Automatización',
+      title: 'Impulsamos tu negocio con',
+      titleGradient: 'software y gestión a la medida',
+      description: 'Desarrollamos aplicaciones móviles para iOS/Android, plataformas de gestión, automatización de procesos operativos, chatbots y soporte técnico integral.',
       primaryCta: {
         label: 'Ver Portafolio',
         href: '#portfolio',
@@ -71,10 +71,10 @@ export const heroHomeData: HeroSlide[] = [
       },
     },
     en: {
-      badge: 'Cloud Architecture & Performance',
-      title: 'We optimize your presence with',
-      titleGradient: 'ultra-speed technology',
-      description: 'We design search engine-optimized solutions with superior conversion rates and lightning-fast loading speeds.',
+      badge: 'Enterprise Systems & Automation',
+      title: 'We empower your business with',
+      titleGradient: 'custom software & management',
+      description: 'We develop mobile apps for iOS/Android, custom management platforms, process automation, chatbots, and comprehensive technical support.',
       primaryCta: {
         label: 'View Portfolio',
         href: '#portfolio',

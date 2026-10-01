@@ -121,7 +121,7 @@ export default function Header() {
       <style jsx global>{`
         * {
           scrollbar-width: thin;
-          scrollbar-color: #06b6d4 transparent;
+          scrollbar-color: #0891b2 transparent;
         }
 
         ::-webkit-scrollbar {
@@ -134,13 +134,13 @@ export default function Header() {
         }
 
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #0284c7 0%, #06b6d4 100%);
+          background: #0891b2;
           border-radius: 9999px;
           border: 2px solid var(--bg-primary, #090d16);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #0369a1 0%, #22d3ee 100%);
+          background: #06b6d4;
         }
       `}</style>
 
@@ -160,22 +160,22 @@ export default function Header() {
         }`}
       >
         <div 
-          className={`w-full transition-all duration-300 relative border-b backdrop-blur-2xl ${
+          className={`w-full transition-all duration-300 relative border-b backdrop-blur-xl ${
             scrolled 
-              ? 'py-2 shadow-xl bg-[var(--mega-bg)]/90 border-[var(--glass-border)]' 
-              : 'py-2.5 sm:py-3 bg-[var(--mega-bg)]/75 border-cyan-500/10'
+              ? 'py-1.5 sm:py-2 shadow-xl bg-[var(--mega-bg)]/90 border-[var(--glass-border)]' 
+              : 'py-2 sm:py-3 bg-[var(--mega-bg)]/80 border-[var(--glass-border)]'
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
             
             <Link href="/" className="flex items-center group shrink-0" aria-label="JVDevs Home">
-              <div className="relative h-[73px] sm:h-[71px] lg:h-[74px] w-[179px] sm:w-[202px] lg:w-[229px] transition-transform duration-300 group-hover:scale-105">
+              <div className="relative h-[52px] sm:h-[65px] lg:h-[72px] w-[130px] sm:w-[180px] lg:w-[220px] transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src={isDarkMode ? '/images/logos/Logo_Oscuro.png' : '/images/logos/Logo_Claro.png'}
                   alt="JVDevs Logo"
                   fill
-                  sizes="(max-width: 640px) 179px, (max-width: 1024px) 202px, 229px"
-                  className="object-contain dark:blur-[0.2px] dark:brightness-95 transition-all duration-300"
+                  sizes="(max-width: 640px) 130px, (max-width: 1024px) 180px, 220px"
+                  className="object-contain transition-all duration-300"
                   priority
                 />
               </div>
@@ -184,7 +184,7 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-8 text-sm font-bold tracking-wide">
               <Link 
                 href="/" 
-                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-500 hover:after:w-full after:transition-all after:duration-300"
+                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-600 dark:after:bg-cyan-400 hover:after:w-full after:transition-all after:duration-300"
                 onMouseEnter={handleServiceClick}
               >
                 {t('Inicio', 'Home')}
@@ -213,43 +213,35 @@ export default function Header() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <div 
-                      className="w-full p-4 rounded-2xl border shadow-2xl grid grid-cols-1 sm:grid-cols-2 gap-3 backdrop-blur-2xl"
-                      style={{
-                        backgroundColor: 'var(--mega-bg)',
-                        borderColor: 'var(--glass-border)'
-                      }}
+                      className="w-full p-3 rounded-2xl border border-[var(--glass-border)] shadow-2xl grid grid-cols-1 sm:grid-cols-2 gap-2 bg-[var(--mega-bg)] backdrop-blur-2xl"
                     >
                       {servicesData.map((service) => (
                         <Link
                           key={service.id}
                           href={service.href}
                           onClick={handleServiceClick}
-                          className="mega-card flex items-center justify-between gap-3 p-3 rounded-xl group hover:bg-cyan-500/10 transition-colors"
+                          className="mega-card flex items-center justify-between gap-3 p-3 rounded-xl transition-all duration-200 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 group"
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <div 
-                              className="p-2 rounded-lg border group-hover:scale-105 transition-transform duration-300 shrink-0"
-                              style={{
-                                backgroundColor: 'var(--bg-primary)',
-                                borderColor: 'var(--glass-border)'
-                              }}
+                              className="p-2 rounded-lg border border-[var(--glass-border)] bg-[var(--bg-primary)] group-hover:bg-white/20 group-hover:border-transparent transition-colors duration-200 shrink-0"
                             >
-                              <service.Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+                              <service.Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400 group-hover:text-white dark:group-hover:text-slate-950 transition-colors" />
                             </div>
                             <div className="flex flex-col min-w-0">
                               <div className="flex items-center gap-2">
-                                <span className="font-bold text-sm text-[var(--text-heading)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors truncate">
+                                <span className="font-bold text-sm text-[var(--text-heading)] group-hover:text-white dark:group-hover:text-slate-950 transition-colors truncate">
                                   {t(service.titleKey, service.titleEn)}
                                 </span>
                                 {service.badgeKey && service.badgeEn && (
-                                  <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase rounded bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)]">
+                                  <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase rounded bg-[var(--badge-bg)] text-[var(--badge-text)] border border-[var(--badge-border)] group-hover:bg-white group-hover:text-slate-900 group-hover:border-transparent transition-colors">
                                     {t(service.badgeKey, service.badgeEn)}
                                   </span>
                                 )}
                               </div>
                             </div>
                           </div>
-                          <HiArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                          <HiArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-white dark:text-slate-950 shrink-0" />
                         </Link>
                       ))}
                     </div>
@@ -259,7 +251,7 @@ export default function Header() {
 
               <Link 
                 href="#about" 
-                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-500 hover:after:w-full after:transition-all after:duration-300"
+                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-600 dark:after:bg-cyan-400 hover:after:w-full after:transition-all after:duration-300"
                 onMouseEnter={handleServiceClick}
               >
                 {t('Nosotros', 'About Us')}
@@ -267,26 +259,26 @@ export default function Header() {
 
               <Link 
                 href="#portfolio" 
-                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-500 hover:after:w-full after:transition-all after:duration-300"
+                className="relative text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-cyan-600 dark:after:bg-cyan-400 hover:after:w-full after:transition-all after:duration-300"
                 onMouseEnter={handleServiceClick}
               >
                 {t('Portafolio', 'Portfolio')}
               </Link>
             </nav>
 
-            <div className="flex items-center gap-1.5 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <button
                 onClick={toggleLanguage}
-                className="action-btn flex items-center gap-1 p-2 sm:px-3 sm:py-2 text-xs font-bold rounded-xl shadow-sm border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 hover:bg-[var(--bg-primary)] transition-colors"
+                className="action-btn flex items-center gap-1 px-2 py-1.5 sm:px-3 sm:py-2 text-xs font-bold rounded-lg border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 transition-colors"
                 aria-label="Change Language"
               >
-                <HiOutlineLanguage className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-600 dark:text-cyan-400" />
+                <HiOutlineLanguage className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                 <span className="uppercase font-bold tracking-wider">{language}</span>
               </button>
 
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="action-btn p-2 sm:p-2.5 rounded-xl shadow-sm border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 hover:bg-[var(--bg-primary)] transition-colors"
+                className="action-btn p-1.5 sm:p-2 rounded-lg border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 hover:bg-[var(--bg-primary)] transition-colors"
                 aria-label="Toggle Theme"
               >
                 {isDarkMode ? (
@@ -298,7 +290,7 @@ export default function Header() {
 
               <Link
                 href="#contact"
-                className="hidden lg:flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white rounded-xl bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400 transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-cyan-500/25 shrink-0"
+                className="hidden lg:flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white rounded-lg bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 transition-all duration-300 shadow-md hover:-translate-y-0.5 shrink-0"
                 aria-label="Contact"
               >
                 <span>{t('Contacto', 'Contact')}</span>
@@ -306,7 +298,7 @@ export default function Header() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="action-btn lg:hidden p-2 sm:p-2.5 rounded-xl border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 text-[var(--foreground)]"
+                className="action-btn lg:hidden p-1.5 sm:p-2 rounded-lg border border-[var(--glass-border)] bg-[var(--bg-primary)]/50 text-[var(--foreground)]"
                 aria-label="Toggle Menu"
               >
                 {isMobileMenuOpen ? (
@@ -320,35 +312,29 @@ export default function Header() {
 
           {isMobileMenuOpen && (
             <div 
-              className="lg:hidden mt-2 mx-4 p-5 rounded-2xl border shadow-2xl space-y-4 animate-in fade-in slide-in-from-top-4 duration-300 backdrop-blur-2xl"
-              style={{
-                backgroundColor: 'var(--mega-bg)',
-                borderColor: 'var(--glass-border)',
-                color: 'var(--foreground)'
-              }}
+              className="lg:hidden mt-2 mx-3 p-4 rounded-xl border border-[var(--glass-border)] shadow-2xl space-y-3 animate-in fade-in slide-in-from-top-4 duration-300 bg-[var(--mega-bg)] backdrop-blur-2xl text-[var(--foreground)]"
             >
               <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block font-semibold py-2 border-b hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                style={{ borderColor: 'var(--glass-border)' }}
+                className="block font-semibold py-2 px-3 rounded-lg hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 transition-colors"
               >
                 {t('Inicio', 'Home')}
               </Link>
 
-              <div className="space-y-2">
-                <span className="block text-xs uppercase tracking-widest text-cyan-600 dark:text-cyan-400 font-extrabold pt-1">
+              <div className="space-y-1">
+                <span className="block text-xs uppercase tracking-widest text-cyan-600 dark:text-cyan-400 font-extrabold px-3 pt-1">
                   {t('Servicios', 'Services')}
                 </span>
-                <div className="pl-3 space-y-2 border-l-2 border-cyan-500/30">
+                <div className="pl-2 space-y-1 border-l-2 border-cyan-600/30 dark:border-cyan-400/30">
                   {servicesData.map((s) => (
                     <Link
                       key={s.id}
                       href={s.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 text-sm font-medium text-[var(--text-muted)] hover:text-cyan-600 dark:hover:text-cyan-400 py-1.5 transition-colors"
+                      className="flex items-center gap-2.5 text-xs font-semibold p-2 rounded-lg text-[var(--text-muted)] hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 transition-colors"
                     >
-                      <s.Icon className="w-4 h-4 text-cyan-600 dark:text-cyan-400 shrink-0" />
+                      <s.Icon className="w-4 h-4 shrink-0 text-cyan-600 dark:text-cyan-400" />
                       <span>{t(s.titleKey, s.titleEn)}</span>
                     </Link>
                   ))}
@@ -358,8 +344,7 @@ export default function Header() {
               <Link
                 href="#about"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block font-semibold py-2 border-b hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                style={{ borderColor: 'var(--glass-border)' }}
+                className="block font-semibold py-2 px-3 rounded-lg hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 transition-colors"
               >
                 {t('Nosotros', 'About Us')}
               </Link>
@@ -367,8 +352,7 @@ export default function Header() {
               <Link
                 href="#portfolio"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block font-semibold py-2 border-b hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                style={{ borderColor: 'var(--glass-border)' }}
+                className="block font-semibold py-2 px-3 rounded-lg hover:bg-cyan-600 hover:text-white dark:hover:bg-cyan-500 dark:hover:text-slate-950 transition-colors"
               >
                 {t('Portafolio', 'Portfolio')}
               </Link>
@@ -376,7 +360,7 @@ export default function Header() {
               <Link
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 w-full mt-2 py-2.5 text-xs font-bold uppercase tracking-wider text-white rounded-xl bg-cyan-600 hover:bg-cyan-500 transition-colors shadow-md"
+                className="flex items-center justify-center gap-2 w-full mt-2 py-2 text-xs font-bold uppercase tracking-wider text-white dark:text-slate-950 rounded-lg bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400 transition-colors shadow-md"
               >
                 <HiOutlineEnvelope className="w-4 h-4" />
                 <span>{t('Contacto', 'Contact')}</span>

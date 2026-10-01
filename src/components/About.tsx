@@ -85,7 +85,7 @@ export default function About() {
                     </span>
                   </div>
                 </div>
-                <p className="text-lg sm:text-2xl text-text-muted leading-relaxed font-medium pt-2">
+                <p className="text-lg sm:text-2xl text-text-muted leading-relaxed font-medium pt-2 text-justify">
                   {t(aboutData.description1Key, aboutData.description1En)}
                 </p>
               </div>
@@ -106,7 +106,7 @@ export default function About() {
                     </span>
                   </div>
                 </div>
-                <p className="text-lg sm:text-xl text-text-muted leading-relaxed font-medium">
+                <p className="text-lg sm:text-xl text-text-muted leading-relaxed font-medium text-justify">
                   {t(aboutData.description2Key, aboutData.description2En)}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -132,7 +132,7 @@ export default function About() {
                         {t('Nuestra Misión', 'Our Mission')}
                       </h3>
                     </div>
-                    <p className="text-base sm:text-lg text-text-muted leading-relaxed font-medium">
+                    <p className="text-base sm:text-lg text-text-muted leading-relaxed font-medium text-justify">
                       {t(aboutData.missionVision.missionKey, aboutData.missionVision.missionEn)}
                     </p>
                   </div>
@@ -146,7 +146,7 @@ export default function About() {
                         {t('Nuestra Visión', 'Our Vision')}
                       </h3>
                     </div>
-                    <p className="text-base sm:text-lg text-text-muted leading-relaxed font-medium">
+                    <p className="text-base sm:text-lg text-text-muted leading-relaxed font-medium text-justify">
                       {t(aboutData.missionVision.visionKey, aboutData.missionVision.visionEn)}
                     </p>
                   </div>
@@ -170,7 +170,7 @@ export default function About() {
                         <h4 className="text-lg font-bold text-text-heading">
                           {t(val.titleKey, val.titleEn)}
                         </h4>
-                        <p className="text-xs sm:text-sm text-text-muted leading-relaxed font-medium">
+                        <p className="text-xs sm:text-sm text-text-muted leading-relaxed font-medium text-justify">
                           {t(val.descriptionKey, val.descriptionEn)}
                         </p>
                       </div>

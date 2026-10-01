@@ -52,20 +52,24 @@ export const aboutData: AboutData = {
   titleEn: 'Digital solutions for the',
   highlightKey: 'evolución de tu negocio',
   highlightEn: 'evolution of your business',
-  description1Key: 'Desde 2026, JVDevs nace como una respuesta directa al estado actual de la tecnología en Venezuela. Ante la escasez de sistemas, aplicaciones y presencia digital sólida en el país, identificamos la oportunidad de unir la experiencia del Desarrollador Fullstack Senior Víctor Carrillo y la energía del Desarrollador Junior Jesús Boyer. Nuestro objetivo es ofrecer soluciones tecnológicas accesibles y de alto nivel para negocios, emprendimientos y empresas, impulsando al mismo tiempo el desarrollo digital nacional.',
-  description1En: 'Since 2026, JVDevs was born as a direct response to the current state of technology in Venezuela. Driven by the need for reliable systems, applications, and digital presence across the country, Senior Fullstack Developer Víctor Carrillo and Junior Developer Jesús Boyer joined forces. We provide high-quality digital solutions for local businesses, startups, and companies, while taking a step forward in national technological growth.',
+  description1Key: 'JVDevs es un equipo de desarrollo de software nacida en 2026 para acelerar la evolución digital en Venezuela. Combinando la experiencia en arquitectura de software fullstack y el desarrollo web de Víctor Carrillo y Jesús Boyer para diseñar soluciones tecnológicas a la medida, fiables y de alto impacto. Impulsamos a emprendimientos y empresas a modernizar sus procesos, conectar con sus clientes y liderar en el entorno digital.',
+  description1En: 'JVDevs is a software development team founded in 2026 to accelerate digital evolution in Venezuela. Combining the full-stack software architecture and web development expertise of Víctor Carrillo and Jesús Boyer, we design tailored, reliable, and high-impact tech solutions. We empower startups and businesses to modernize operations, engage customers, and lead in the digital era.',
   description2Key: 'Brindamos un acompañamiento integral: desde páginas web y aplicaciones a medida hasta plataformas de gestión, automatización de procesos, chatbots y soporte técnico especializado para garantizar que cada proyecto funcione de forma continua y eficiente.',
   description2En: 'We offer comprehensive support: from custom websites and tailored applications to management platforms, process automation, chatbots, and specialized technical support to ensure every project operates smoothly and efficiently.',
   image: '/images/bg/bg.png',
   missionVision: {
-    missionKey: 'Impulsar la transformación digital de negocios y empresas mediante herramientas tecnológicas fiables, accesibles y hechas a la medida, ayudando a modernizar la operativa local con un acompañamiento cercano y transparente.',
-    missionEn: 'Drive the digital transformation of local businesses and enterprises through reliable, accessible, and custom-built technology tools, helping modernize everyday operations with close and transparent support.',
-    visionKey: 'Convertirnos en un referente de desarrollo y software que demuestre el potencial del talento tecnológico nacional, creando productos duraderos que fortalezcan el tejido empresarial dentro y fuera del país.',
-    visionEn: 'Become a leading benchmark in software development that showcases national tech talent, creating long-lasting digital products that strengthen business operations locally and globally.',
+    missionKey: 'Impulsar la transformación digital de empresas y emprendimientos mediante software accesible, confiable y hecho a la medida, modernizando sus procesos operativos a través de un acompañamiento técnico cercano, ético y transparente.',
+    missionEn: 'Drive the digital transformation of companies and enterprises through accessible, reliable, and custom-built software, modernizing operational processes with close, ethical, and transparent technical support.',
+    visionKey: 'Ser un referente en desarrollo de software y soluciones digitales que evidencie el alcance del talento venezolano, creando productos tecnológicos duraderos que impulsen el tejido empresarial tanto a nivel nacional como internacional.',
+    visionEn: 'Be a leading benchmark in software development and digital solutions that showcases the reach of Venezuelan talent, creating long-lasting tech products that drive business growth both locally and internationally.',
     features: [
       {
-        keyEs: 'Desarrollo web a medida, SaaS y sistemas corporativos',
-        keyEn: 'Custom Web Development, SaaS & Enterprise Systems',
+        keyEs: 'Desarrollo web a medida y sistemas corporativos',
+        keyEn: 'Custom Web Development & Enterprise Systems',
+      },
+      {
+        keyEs: 'Aplicaciones móviles para iOS, Android y publicación en App Store / Play Store',
+        keyEn: 'Mobile Apps for iOS, Android & App Store / Play Store Publishing',
       },
       {
         keyEs: 'Automatización de procesos y desarrollo de chatbots',

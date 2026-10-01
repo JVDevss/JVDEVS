@@ -64,8 +64,18 @@ export const servicesData: ServiceItem[] = [
     badgeKey: 'Popular',
     badgeEn: 'Popular',
     previewImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Diseño 100% Responsivo', 'Integración de Pagos', 'Carga Ultra Rápida', 'SEO Básico Incluido'],
-    highlightsEn: ['100% Responsive Design', 'Payment Gateway Integration', 'Ultra Fast Loading', 'Basic SEO Included'],
+    highlightsKey: [
+      'Arquitectura Escalable',
+      'Rendimiento Optimizado',
+      'Diseño UI/UX A Medida',
+      'Soporte y Mantenimiento'
+    ],
+    highlightsEn: [
+      'Scalable Architecture',
+      'Optimized Performance',
+      'Custom UI/UX Design',
+      'Support & Maintenance'
+    ],
   },
   {
     id: '02',
@@ -87,8 +97,18 @@ export const servicesData: ServiceItem[] = [
     badgeKey: 'Nuevo',
     badgeEn: 'New',
     previewImage: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Atención 24/7 Automatizada', 'WhatsApp & Telegram API', 'Respuestas con IA', 'Captura de Leads'],
-    highlightsEn: ['24/7 Automated Support', 'WhatsApp & Telegram API', 'AI Powered Responses', 'Lead Generation'],
+    highlightsKey: [
+      'Atención 24/7 Automatizada',
+      'API Oficial WhatsApp & Telegram',
+      'Respuestas Basadas en IA',
+      'Captura y Calificación de Leads'
+    ],
+    highlightsEn: [
+      '24/7 Automated Support',
+      'Official WhatsApp & Telegram API',
+      'AI-Powered Responses',
+      'Lead Capture & Qualification'
+    ],
   },
   {
     id: '03',
@@ -97,7 +117,7 @@ export const servicesData: ServiceItem[] = [
     descriptionKey: 'Herramientas y plataformas accesibles desde cualquier navegador, adaptadas a las necesidades específicas de tu proyecto.',
     descriptionEn: 'Accessible tools and platforms from any browser, tailored to your project’s specific needs.',
     longDescriptionKey: [
-      'Desarrollo de aplicaciones web personalizadas que transforman ideas y procesos complejos en software accesible directamente desde el navegador. Construimos plataformas tipo SaaS, paneles de administración intuitivos y herramientas interactiva para optimizar el rendimiento operativo de tu empresa.',
+      'Desarrollo de aplicaciones web personalizadas que transforman ideas y procesos complejos en software accesible directamente desde el navegador. Construimos plataformas tipo SaaS, paneles de administración intuitivos y herramientas interactivas para optimizar el rendimiento operativo de tu empresa.',
       'Priorizamos la seguridad, la flexibilidad de módulos interconectados y la accesibilidad multiusuario. Esto permite a tu equipo o a tus clientes interactuar con la plataforma de forma remota, fluida y con los niveles de autorización requeridos.'
     ],
     longDescriptionEn: [
@@ -107,8 +127,19 @@ export const servicesData: ServiceItem[] = [
     Icon: HiOutlineDeviceTablet,
     href: '/servicios/aplicaciones-web',
     accent: 'from-indigo-500/20 via-sky-500/10 to-transparent',
-    previewImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',  highlightsKey: ['SaaS a Medida', 'Paneles de Administración', 'Multi-usuario y Roles', 'Acceso Remoto Seguro'],
-    highlightsEn: ['Custom SaaS', 'Admin Dashboards', 'Multi-user & Roles', 'Secure Remote Access'],
+    previewImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',
+    highlightsKey: [
+      'Plataformas SaaS a Medida',
+      'Paneles de Control Intuitivos',
+      'Gestión de Roles y Permisos',
+      'Acceso Remoto Seguro'
+    ],
+    highlightsEn: [
+      'Custom SaaS Platforms',
+      'Intuitive Admin Dashboards',
+      'Roles & Permission Management',
+      'Secure Remote Access'
+    ],
   },
   {
     id: '04',
@@ -128,8 +159,18 @@ export const servicesData: ServiceItem[] = [
     href: '/servicios/diseno-ui-ux',
     accent: 'from-purple-500/20 via-pink-500/10 to-transparent',
     previewImage: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Prototipeado en Figma', 'Wireframes e Investigaciones', 'Design Systems', 'Enfoque User-Centric'],
-    highlightsEn: ['Figma Prototyping', 'Wireframing & Research', 'Design Systems', 'User-Centric Focus'],
+    highlightsKey: [
+      'Prototipado Interactivo Figma',
+      'Investigación y Wireframing',
+      'Sistemas de Diseño Escalables',
+      'Enfoque Centrado en el Usuario'
+    ],
+    highlightsEn: [
+      'Interactive Figma Prototyping',
+      'User Research & Wireframing',
+      'Scalable Design Systems',
+      'User-Centric Approach'
+    ],
   },
   {
     id: '05',
@@ -150,8 +191,19 @@ export const servicesData: ServiceItem[] = [
     accent: 'from-blue-500/20 via-indigo-500/10 to-transparent',
     badgeKey: 'Destacado',
     badgeEn: 'Featured',
-    previewImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop',  highlightsKey: ['Bases de Datos Relacionales', 'APIs RESTful / GraphQL', 'Arquitectura Robusta', 'Reportes y Métricas'],
-    highlightsEn: ['Relational Databases', 'RESTful / GraphQL APIs', 'Robust Architecture', 'Reports & Analytics'],
+    previewImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop',
+    highlightsKey: [
+      'Bases de Datos Relacionales',
+      'APIs RESTful y GraphQL',
+      'Arquitectura de Alta Disponibilidad',
+      'Métricas e Informes en Tiempo Real'
+    ],
+    highlightsEn: [
+      'Relational Databases',
+      'RESTful & GraphQL APIs',
+      'High Availability Architecture',
+      'Real-time Analytics & Reports'
+    ],
   },
   {
     id: '06',
@@ -171,8 +223,18 @@ export const servicesData: ServiceItem[] = [
     href: '/servicios/automatizacion-procesos',
     accent: 'from-fuchsia-500/20 via-rose-500/10 to-transparent',
     previewImage: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Flujos de Trabajo (Zapier/Make)', 'Extracción de Datos', 'Ahorro de Tiempo', 'Reducción de Errores'],
-    highlightsEn: ['Workflows (Zapier/Make)', 'Data Extraction', 'Time Saving', 'Error Reduction'],
+    highlightsKey: [
+      'Flujos Automatizados (Zapier/Make)',
+      'Sincronización de Datos',
+      'Ahorro Eficiente de Tiempo',
+      'Reducción del Error Humano'
+    ],
+    highlightsEn: [
+      'Automated Workflows (Zapier/Make)',
+      'Data Synchronization',
+      'Efficient Time Saving',
+      'Human Error Reduction'
+    ],
   },
   {
     id: '07',
@@ -192,8 +254,18 @@ export const servicesData: ServiceItem[] = [
     href: '/servicios/optimizacion-seo',
     accent: 'from-amber-500/20 via-orange-500/10 to-transparent',
     previewImage: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Auditoría On-Page / Off-Page', 'Optimización Core Web Vitals', 'Estrategia de Palabras Clave', 'Informes Semanales'],
-    highlightsEn: ['On-Page / Off-Page Audit', 'Core Web Vitals Optimization', 'Keyword Strategy', 'Weekly Reports'],
+    highlightsKey: [
+      'Auditoría Técnica On-Page/Off-Page',
+      'Optimización Core Web Vitals',
+      'Estrategia de Palabras Clave',
+      'Monitoreo e Informes Periódicos'
+    ],
+    highlightsEn: [
+      'On-Page & Off-Page Technical Audit',
+      'Core Web Vitals Optimization',
+      'Targeted Keyword Strategy',
+      'Continuous Monitoring & Reports'
+    ],
   },
   {
     id: '08',
@@ -213,7 +285,17 @@ export const servicesData: ServiceItem[] = [
     href: '/servicios/soporte-mantenimiento',
     accent: 'from-slate-500/20 via-cyan-500/10 to-transparent',
     previewImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop',
-    highlightsKey: ['Monitoreo Continuo', 'Respaldo de Información', 'Soporte Remoto e In-Situ', 'Mantenimiento Preventivo'],
-    highlightsEn: ['Continuous Monitoring', 'Data Backups', 'Remote & On-Site Support', 'Preventive Maintenance'],
+    highlightsKey: [
+      'Monitoreo Continuo 24/7',
+      'Respaldos de Seguridad Automáticos',
+      'Soporte Remoto & Presencial',
+      'Mantenimiento Preventivo Integral'
+    ],
+    highlightsEn: [
+      '24/7 Continuous Monitoring',
+      'Automated Data Backups',
+      'Remote & On-Site Support',
+      'Comprehensive Preventive Maintenance'
+    ],
   },
 ];
