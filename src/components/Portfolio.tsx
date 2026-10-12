@@ -41,7 +41,6 @@ export default function PortfolioInverted() {
       : portfolioData.projects.filter((p: PortfolioProject) => p.category === selectedCategory);
   }, [selectedCategory]);
 
-  // Cambiar automáticamente al primer proyecto de la lista cuando cambia la categoría seleccionada
   useEffect(() => {
     if (filteredProjects.length > 0) {
       setActiveProject(filteredProjects[0]);
@@ -181,7 +180,6 @@ export default function PortfolioInverted() {
         }
       `}</style>
 
-      {/* Imagen de Fondo y Capas de Resplandor */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
           src="/images/bg/bg.png"
@@ -199,8 +197,6 @@ export default function PortfolioInverted() {
       <div className="absolute bottom-1/4 -left-32 w-96 h-96 sm:w-[600px] sm:h-[600px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse" />
 
       <div className="max-w-7xl 2xl:max-w-[1500px] 4xl:max-w-[1800px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-16 relative z-10">
-        
-        {/* Header de la sección */}
         <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
           <span className="px-3.5 py-1.5 text-xs sm:text-sm 2xl:text-base font-extrabold uppercase tracking-widest rounded-full bg-badge-bg text-badge-text border border-badge-border mb-4 shadow-sm">
             {t(portfolioData.badgeKey, portfolioData.badgeEn)}
@@ -218,7 +214,6 @@ export default function PortfolioInverted() {
           </p>
         </div>
 
-        {/* Filtros de Categoría */}
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
           {portfolioData.categories.map((cat) => (
             <button
@@ -235,16 +230,10 @@ export default function PortfolioInverted() {
           ))}
         </div>
 
-        {/* Layout Invertido: Columna principal a la izquierda, lista a la derecha en pantallas lg+ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* DETALLE DEL PROYECTO */}
           <div className="lg:col-span-8 lg:order-1 order-2">
             {activeProject && (
-              <div 
-                className="p-6 sm:p-8 2xl:p-10 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl transition-all"
-              >
-                {/* Selector Media */}
+              <div className="p-6 sm:p-8 2xl:p-10 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl transition-all">
                 {activeProject.videoUrl && allProjectImages.length > 0 && (
                   <div className="flex items-center gap-2 mb-6 p-1 rounded-xl bg-btn-sec-bg border border-glass-border w-fit ml-auto">
                     <button
@@ -273,7 +262,6 @@ export default function PortfolioInverted() {
                   </div>
                 )}
 
-                {/* Área del Visualizador de Medios */}
                 <div className="mb-8">
                   {mediaTab === 'images' ? (
                     <div className="space-y-3">
@@ -349,7 +337,6 @@ export default function PortfolioInverted() {
                   )}
                 </div>
 
-                {/* Cabecera del Proyecto */}
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-glass-border sm:flex-row-reverse">
                   <div className="flex items-center gap-3">
                     {activeProject.liveUrl && (
@@ -395,12 +382,10 @@ export default function PortfolioInverted() {
                   </div>
                 </div>
 
-                {/* Descripción */}
                 <p className="text-sm sm:text-base 2xl:text-lg text-text-heading leading-relaxed mb-8 font-medium">
                   {t(activeProject.descriptionKey, activeProject.descriptionEn)}
                 </p>
 
-                {/* Destacados (Tiempo / Métrica) */}
                 {(activeProject.deliveryTimeKey || activeProject.keyHighlightValue) && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                     {activeProject.keyHighlightValue && activeProject.keyHighlightKey && (
@@ -437,7 +422,6 @@ export default function PortfolioInverted() {
                   </div>
                 )}
 
-                {/* Tecnologías */}
                 <div>
                   <h4 className="text-xs font-mono font-bold text-text-muted uppercase tracking-wider mb-3">
                     {t('Tecnologías & Herramientas', 'Technologies & Stack')}
@@ -458,7 +442,6 @@ export default function PortfolioInverted() {
             )}
           </div>
 
-          {/* LISTA DE PROYECTOS */}
           <div className="lg:col-span-4 flex flex-col gap-4 lg:order-2 order-1">
             <span className="text-xs font-mono font-bold text-text-muted uppercase tracking-wider px-1">
               {t('Selecciona un proyecto', 'Select a project')} ({filteredProjects.length})
@@ -512,7 +495,6 @@ export default function PortfolioInverted() {
         </div>
       </div>
 
-      {/* Lightbox / Modal de Imágenes Completo */}
       {lightboxOpen && allProjectImages.length > 0 && (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-md select-none">
           <div className="absolute top-0 inset-x-0 p-4 flex items-center justify-between z-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none">

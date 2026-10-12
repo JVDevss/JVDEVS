@@ -9,7 +9,6 @@ export default function ScrollTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Cálculo del scroll acumulado
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
 
@@ -17,7 +16,6 @@ export default function ScrollTop() {
         setScrollProgress((currentScroll / totalHeight) * 100);
       }
 
-      // Mostrar u ocultar el botón
       setIsVisible(currentScroll > 300);
     };
 
@@ -32,7 +30,6 @@ export default function ScrollTop() {
     });
   };
 
-  // Valores para el círculo de progreso SVG
   const radius = 20;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
@@ -50,9 +47,7 @@ export default function ScrollTop() {
         aria-label="Volver arriba"
         className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-lg hover:shadow-cyan-500/25 border border-slate-200/50 dark:border-slate-800/50 transition-all duration-300 hover:scale-110 active:scale-95"
       >
-        {/* Círculo SVG de progreso */}
         <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 48 48">
-          {/* Pista del círculo */}
           <circle
             cx="24"
             cy="24"
@@ -62,7 +57,6 @@ export default function ScrollTop() {
             stroke="currentColor"
             fill="transparent"
           />
-          {/* Borde reactivo con gradiente al hacer scroll */}
           <circle
             cx="24"
             cy="24"
@@ -77,7 +71,6 @@ export default function ScrollTop() {
           />
         </svg>
 
-        {/* Icono de la flecha con animación */}
         <HiOutlineArrowUp className="w-5 h-5 text-slate-700 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 group-hover:-translate-y-0.5 transition-all duration-300 relative z-10" />
       </button>
     </div>

@@ -39,12 +39,12 @@ export default function Hero() {
               fill
               sizes="100vw"
               priority={index === 0}
-              className="object-cover object-center opacity-60 dark:opacity-70 transition-opacity duration-700"
+              className="object-cover object-center opacity-85 dark:opacity-70 transition-opacity duration-700"
             />
           </div>
         ))}
 
-        <div className="absolute inset-0 bg-bg-primary/50 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-bg-primary/10 backdrop-blur-[1px]" />
       </div>
 
       <div className="relative z-10 w-full max-w-5xl mx-auto my-auto">

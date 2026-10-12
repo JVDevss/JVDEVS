@@ -12,29 +12,44 @@ import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 export default function Contact() {
   const { t } = useLanguage();
-  const [isCallingAvailable, setIsCallingAvailable] = useState<boolean>(false);
+  
+  const [isPhoneAvailable, setIsPhoneAvailable] = useState<boolean>(false);
+  const [isWhatsappAvailable, setIsWhatsappAvailable] = useState<boolean>(false);
 
-  const phone1 = process.env.NEXT_PUBLIC_CONTACT_PHONE_1 || '+584120000000';
+  const phone1 = process.env.NEXT_PUBLIC_CONTACT_PHONE_1 || '';
   const phone2 = process.env.NEXT_PUBLIC_CONTACT_PHONE_2 || '';
-  const email1 = process.env.NEXT_PUBLIC_CONTACT_EMAIL_1 || 'contacto@tuempresa.com';
-  const email2 = process.env.NEXT_PUBLIC_CONTACT_EMAIL_2 || '';
-  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com';
-  const instagramHandle = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || '@tuempresa';
+  const email1 = process.env.NEXT_PUBLIC_CONTACT_EMAIL_1 || '';
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
+  const instagramHandle = process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE;
 
   useEffect(() => {
-    const checkVenezuelaTime = () => {
+    const checkSchedules = () => {
       const now = new Date();
       const vzlaTimeString = now.toLocaleString('en-US', { timeZone: 'America/Caracas', hour12: false });
       const vzlaDate = new Date(vzlaTimeString);
+      
+      const day = vzlaDate.getDay();
       const hours = vzlaDate.getHours();
+      const minutes = vzlaDate.getMinutes();
+      const totalMinutes = hours * 60 + minutes;
 
-      setIsCallingAvailable(hours >= 8 && hours < 18);
+      const isWeekday = day >= 1 && day <= 5;
+
+      const phoneStart = 8 * 60 + 30;
+      const phoneEnd = 17 * 60;
+      setIsPhoneAvailable(isWeekday && totalMinutes >= phoneStart && totalMinutes < phoneEnd);
+
+      const waStart = 8 * 60 + 30;
+      const waEnd = 18 * 60;
+      setIsWhatsappAvailable(isWeekday && totalMinutes >= waStart && totalMinutes < waEnd);
     };
 
-    checkVenezuelaTime();
-    const interval = setInterval(checkVenezuelaTime, 60000);
+    checkSchedules();
+    const interval = setInterval(checkSchedules, 60000);
     return () => clearInterval(interval);
   }, []);
+
+  const cleanPhone = (phone: string) => phone.replace(/[^0-9]/g, '');
 
   return (
     <section 
@@ -78,130 +93,173 @@ export default function Contact() {
         <div className="p-6 sm:p-10 2xl:p-12 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <a
-              href={`https://wa.me/${phone1.replace(/[^0-9]/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-sm"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full blur-xl group-hover:bg-emerald-500/20 transition-all pointer-events-none" />
+            <div className="p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col justify-between shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full blur-xl pointer-events-none" />
               
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div className="p-3.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                     <FaWhatsapp className="w-6 h-6" />
                   </div>
-                  <HiOutlineArrowUpRight className="w-5 h-5 text-text-muted group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+
+                  {!isWhatsappAvailable && (
+                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold tracking-wider bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
+                      {t('CERRADO', 'CLOSED')}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-xl font-bold text-text-heading mb-2">
                   WhatsApp
                 </h3>
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-8">
-                  {t('Atención rápida para cotizaciones, soporte y consultas directas.', 'Fast attention for quotes, support, and direct inquiries.')}
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+                  {t('Lun - Vie: 8:30 AM - 6:00 PM', 'Mon - Fri: 8:30 AM - 6:00 PM')}
                 </p>
               </div>
 
-              <div className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-400 transition-all shadow-md">
-                <span>{t('Iniciar Chat', 'Start Chat')}</span>
+              <div className="flex flex-col gap-2.5">
+                {phone1 && (
+                  <a
+                    href={isWhatsappAvailable ? `https://wa.me/${cleanPhone(phone1)}` : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-disabled={!isWhatsappAvailable}
+                    className={`group inline-flex items-center justify-between py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md ${
+                      isWhatsappAvailable
+                        ? 'bg-emerald-600 hover:bg-emerald-500 text-white dark:bg-emerald-500 dark:hover:bg-emerald-400'
+                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                    }`}
+                  >
+                    <span>{t('Chat Principal', 'Main Chat')}</span>
+                    <HiOutlineArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                )}
+
+                {phone2 && (
+                  <a
+                    href={isWhatsappAvailable ? `https://wa.me/${cleanPhone(phone2)}` : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-disabled={!isWhatsappAvailable}
+                    className={`group inline-flex items-center justify-between py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                      isWhatsappAvailable
+                        ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20'
+                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                    }`}
+                  >
+                    <span>{t('Chat Secundario', 'Secondary Chat')}</span>
+                    <HiOutlineArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                )}
               </div>
-            </a>
+            </div>
 
             <div className="p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col justify-between shadow-sm">
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className={`p-3.5 rounded-xl border ${
-                    isCallingAvailable 
-                      ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20' 
-                      : 'bg-neutral-500/10 text-text-muted border-transparent'
-                  }`}>
+                  <div className="p-3.5 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
                     <HiOutlinePhone className="w-6 h-6" />
                   </div>
+
+                  {!isPhoneAvailable && (
+                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold tracking-wider bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30">
+                      {t('CERRADO', 'CLOSED')}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className="text-xl font-bold text-text-heading mb-2">
                   {t('Llamada Telefónica', 'Phone Call')}
                 </h3>
-                <p className="font-mono text-xs sm:text-sm text-text-muted mb-8">
-                  {phone1}
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+                  {t('Lun - Vie: 8:30 AM - 5:00 PM', 'Mon - Fri: 8:30 AM - 5:00 PM')}
                 </p>
               </div>
 
-              {isCallingAvailable ? (
-                <a
-                  href={`tel:${phone1}`}
-                  className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400 transition-all shadow-md"
-                >
-                  <HiOutlinePhone className="w-4 h-4" />
-                  <span>{t('Llamar Ahora', 'Call Now')}</span>
-                </a>
-              ) : (
-                <div className="py-3 px-4 rounded-xl border border-dashed border-glass-border text-center">
-                  <span className="text-xs font-mono text-text-muted">
-                    {t('Línea Fuera de Horario', 'Line Off Hours')}
-                  </span>
-                </div>
-              )}
+              <div className="flex flex-col gap-2.5">
+                {phone1 && (
+                  <a
+                    href={isPhoneAvailable ? `tel:${phone1}` : undefined}
+                    aria-disabled={!isPhoneAvailable}
+                    className={`inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md ${
+                      isPhoneAvailable
+                        ? 'text-white bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400'
+                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                    }`}
+                  >
+                    <HiOutlinePhone className="w-4 h-4" />
+                    <span>{t('Llamar Principal', 'Call Main')}</span>
+                  </a>
+                )}
+                {phone2 && (
+                  <a
+                    href={isPhoneAvailable ? `tel:${phone2}` : undefined}
+                    aria-disabled={!isPhoneAvailable}
+                    className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                      isPhoneAvailable
+                        ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20'
+                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                    }`}
+                  >
+                    <HiOutlinePhone className="w-4 h-4" />
+                    <span>{t('Llamar Secundario', 'Call Secondary')}</span>
+                  </a>
+                )}
+              </div>
             </div>
 
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg hover:border-pink-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-sm"
-            >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 rounded-bl-full blur-xl group-hover:bg-pink-500/20 transition-all pointer-events-none" />
+            {instagramUrl && (
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg hover:border-pink-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 shadow-sm"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 rounded-bl-full blur-xl group-hover:bg-pink-500/20 transition-all pointer-events-none" />
 
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-3.5 rounded-xl bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20">
-                    <FaInstagram className="w-6 h-6" />
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="p-3.5 rounded-xl bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20">
+                      <FaInstagram className="w-6 h-6" />
+                    </div>
+                    <HiOutlineArrowUpRight className="w-5 h-5 text-text-muted group-hover:text-pink-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                   </div>
-                  <HiOutlineArrowUpRight className="w-5 h-5 text-text-muted group-hover:text-pink-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+
+                  <h3 className="text-xl font-bold text-text-heading mb-2">
+                    Instagram
+                  </h3>
+                  <p className="font-mono text-xs sm:text-sm text-pink-600 dark:text-pink-400 font-semibold mb-8">
+                    {instagramHandle}
+                  </p>
                 </div>
 
-                <h3 className="text-xl font-bold text-text-heading mb-2">
-                  Instagram
-                </h3>
-                <p className="font-mono text-xs sm:text-sm text-pink-600 dark:text-pink-400 font-semibold mb-8">
-                  {instagramHandle}
-                </p>
-              </div>
-
-              <div className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-500 dark:bg-pink-500 dark:hover:bg-pink-400 transition-all shadow-md">
-                <span>{t('Ver Perfil', 'View Profile')}</span>
-              </div>
-            </a>
+                <div className="inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-pink-600 hover:bg-pink-500 dark:bg-pink-500 dark:hover:bg-pink-400 transition-all shadow-md">
+                  <span>{t('Ver Perfil', 'View Profile')}</span>
+                </div>
+              </a>
+            )}
 
           </div>
 
-          <div className="mt-6 p-4 sm:p-6 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-badge-bg text-badge-text border border-badge-border">
-                <HiOutlineEnvelope className="w-5 h-5" />
+          {email1 && (
+            <div className="mt-6 p-4 sm:p-6 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 rounded-xl bg-badge-bg text-badge-text border border-badge-border">
+                  <HiOutlineEnvelope className="w-5 h-5" />
+                </div>
+                <span className="text-xs sm:text-sm font-medium text-text-muted">
+                  {t('Contacto formal por correo electrónico:', 'Formal contact via email:')}
+                </span>
               </div>
-              <span className="text-xs sm:text-sm font-medium text-text-muted">
-                {t('Contacto formal por correo electrónico:', 'Formal contact via email:')}
-              </span>
-            </div>
 
-            <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${email1}`}
-                className="px-4 py-2 rounded-xl text-xs font-mono font-bold text-text-heading bg-bg-card border border-glass-border hover:border-cyan-500 transition-all"
+                className="px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold text-text-heading bg-bg-card border border-glass-border hover:border-cyan-500 transition-all"
               >
                 {email1}
               </a>
-              {email2 && (
-                <a
-                  href={`mailto:${email2}`}
-                  className="px-4 py-2 rounded-xl text-xs font-mono font-bold text-text-heading bg-bg-card border border-glass-border hover:border-cyan-500 transition-all"
-                >
-                  {email2}
-                </a>
-              )}
             </div>
-          </div>
+          )}
 
         </div>
       </div>

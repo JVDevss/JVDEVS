@@ -28,7 +28,7 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full dark`}
     >
       <head>
         <script
@@ -50,7 +50,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans selection:bg-brand-cyan selection:text-black bg-[var(--bg-primary)] text-[var(--foreground)] transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-bg-primary text-foreground antialiased transition-colors duration-300">
         <LanguageProvider>
           <Header />
           <main className="flex-1 pt-24">{children}</main>

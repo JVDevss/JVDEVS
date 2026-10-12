@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 
 export const metaHome: Metadata = {
+  metadataBase: new URL("https://www.jvdevs.com/"),
   title: {
-    default: "JVDevs | Desarrollo Web & Soluciones Digitales",
+    default: "JVDevs | Desarrollo Web, Apps a Medida & Soluciones Digitales",
     template: "%s | JVDevs",
   },
   description:
-    "Estudio de desarrollo web, optimización SEO y diseño UI/UX. Creamos sitios web modernos, rápidos y adaptados a tus necesidades",
+    "Estudio especializado en desarrollo web full-stack, optimización SEO avanzada y diseño UI/UX de alto rendimiento. Creamos plataformas modernas, escalables y adaptadas a tus objetivos de negocio.",
   keywords: [
     "Desarrollo Web",
     "Agencia Digital",
@@ -14,29 +15,56 @@ export const metaHome: Metadata = {
     "SEO",
     "React",
     "Next.js",
-    "Fullstack",
+    "Node.js",
+    "TypeScript",
+    "Fullstack Developer",
     "JVDevs",
   ],
-  authors: [{ name: "JVDevs" }],
+  authors: [{ name: "JVDevs", url: "https://www.jvdevs.com/" }],
   creator: "JVDevs",
-  metadataBase: new URL("https://jvdevs.com"), // Cambia por tu dominio real
+  publisher: "JVDevs",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "JVDevs | Desarrollo Web & Soluciones Digitales",
     description:
-      "Diseño UI/UX, desarrollo a medida y SEO para potenciar tu presencia en línea.",
-    url: "https://jvdevs.com",
+      "Diseño UI/UX, desarrollo web a medida y estrategias SEO orientadas a potenciar tu presencia y conversión en línea.",
+    url: "https://www.jvdevs.com/",
     siteName: "JVDevs",
     locale: "es_ES",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "JVDevs - Desarrollo Web y Soluciones Digitales",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "JVDevs | Desarrollo Web & Soluciones Digitales",
     description:
-      "Diseño UI/UX, desarrollo a medida y SEO para potenciar tu presencia en línea.",
+      "Transformamos ideas en productos digitales rápidos, modernos y escalables. ¡Conoce nuestros servicios!",
+    creator: "@jvdevs",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };

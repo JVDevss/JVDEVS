@@ -1,39 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  /* Fondos y Estructura Principal */
   --bg-primary: #f8fafc;
   --bg-card: rgba(255, 255, 255, 0.85);
   --bg-glass: rgba(255, 255, 255, 0.75);
   --bg-glass-hover: rgba(255, 255, 255, 0.95);
   
-  /* Tipografía y Textos */
   --foreground: #020617;
-  --text-muted: #1e293b; /* Ajustado a Slate-800 para contraste óptimo sobre glass claro */
+  --text-muted: #1e293b;
   --text-heading: #0f172a;
   
-  /* Bordes y Efectos Liquid Glass */
   --glass-border: rgba(203, 213, 225, 0.6);
   --glass-border-hover: rgba(3, 105, 161, 0.4);
   
-  /* Insignias y Badges */
   --badge-bg: rgba(3, 105, 161, 0.08);
   --badge-border: rgba(3, 105, 161, 0.25);
   --badge-text: #0369a1;
   
-  /* Botones Secundarios e Iconos */
   --btn-sec-bg: rgba(255, 255, 255, 0.85);
   --btn-sec-hover: rgba(241, 245, 249, 1);
   --btn-sec-text: #0f172a;
   --btn-sec-border: rgba(203, 213, 225, 0.9);
   
-  /* Mega Menú, Tarjetas e Ítems */
   --mega-bg: rgba(255, 255, 255, 0.85);
   --item-bg: rgba(255, 255, 255, 0.65);
   --item-hover-bg: rgba(3, 105, 161, 0.06);
   --item-border: rgba(203, 213, 225, 0.7);
 
-  /* Tokens Exclusivos del Footer Liquid Glass */
   --footer-bg: #f1f5f9;
   --footer-border: rgba(203, 213, 225, 0.8);
   --footer-card-bg: rgba(255, 255, 255, 0.7);
@@ -41,39 +34,32 @@
 }
 
 .dark {
-  /* Fondos y Estructura Principal */
   --bg-primary: #030712;
   --bg-card: rgba(15, 23, 42, 0.6);
   --bg-glass: rgba(15, 23, 42, 0.65);
   --bg-glass-hover: rgba(30, 41, 59, 0.8);
   
-  /* Tipografía y Textos */
   --foreground: #f8fafc;
   --text-muted: #cbd5e1;
   --text-heading: #ffffff;
   
-  /* Bordes y Efectos Glass */
   --glass-border: rgba(255, 255, 255, 0.12);
   --glass-border-hover: rgba(34, 211, 238, 0.4);
   
-  /* Insignias y Badges */
   --badge-bg: rgba(15, 23, 42, 0.6);
   --badge-border: rgba(34, 211, 238, 0.4);
   --badge-text: #67e8f9;
   
-  /* Botones Secundarios e Iconos */
   --btn-sec-bg: rgba(15, 23, 42, 0.7);
   --btn-sec-hover: rgba(30, 41, 59, 0.9);
   --btn-sec-text: #f8fafc;
   --btn-sec-border: rgba(255, 255, 255, 0.15);
   
-  /* Mega Menú, Tarjetas e Ítems */
   --mega-bg: rgba(3, 7, 18, 0.92);
   --item-bg: rgba(15, 23, 42, 0.5);
   --item-hover-bg: rgba(6, 182, 212, 0.15);
   --item-border: rgba(255, 255, 255, 0.08);
 
-  /* Tokens Exclusivos del Footer */
   --footer-bg: #070a0f;
   --footer-border: rgba(6, 182, 212, 0.2);
   --footer-card-bg: rgba(13, 18, 30, 0.65);
@@ -81,7 +67,6 @@
 }
 
 @theme inline {
-  /* Mapeo de Colores del Tema */
   --color-bg-primary: var(--bg-primary);
   --color-bg-card: var(--bg-card);
   --color-foreground: var(--foreground);
@@ -94,7 +79,6 @@
   --color-btn-sec-bg: var(--btn-sec-bg);
   --color-btn-sec-border: var(--btn-sec-border);
 
-  /* Fuentes */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 }
@@ -107,7 +91,6 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* EFECTOS LIQUID GLASS */
 .liquid-glass {
   background: var(--footer-card-bg);
   backdrop-filter: blur(16px) saturate(180%);
@@ -131,14 +114,12 @@ body {
   box-shadow: 0 12px 30px -5px rgba(6, 182, 212, 0.3), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Footer Container */
 .footer-container {
   background-color: var(--footer-bg);
   border-top: 1px solid var(--footer-border);
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-/* Animaciones */
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
