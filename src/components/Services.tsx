@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/src/context/LanguageContext';
@@ -56,8 +56,25 @@ export default function Services() {
   const [cartCount, setCartCount] = useState<number>(0);
   const [appScreen, setAppScreen] = useState<'feed' | 'profile'>('feed');
 
+  // Referencias para el manejo del swipe en móvil y scroll suave
+  const touchStartXRef = useRef<number>(0);
+  const touchEndXRef = useRef<number>(0);
+  const detailCardRef = useRef<HTMLDivElement>(null);
+
   const activeService = servicesData[activeTab] || servicesData[0];
   const IconComponent = activeService.Icon;
+
+  const scrollToDetailCard = () => {
+    if (detailCardRef.current) {
+      const elementPosition = detailCardRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - 100;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const handleSendMessage = (e: FormEvent) => {
     e.preventDefault();
@@ -80,24 +97,47 @@ export default function Services() {
 
   const handleServiceClick = (index: number) => {
     setActiveTab(index);
-    const targetElement = document.getElementById('service-detail-card');
-    if (targetElement) {
-      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - 100;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    scrollToDetailCard();
   };
 
   const handleNextService = () => {
-    setActiveTab((prev) => (prev + 1) % servicesData.length);
+    setActiveTab((prev) => {
+      const next = (prev + 1) % servicesData.length;
+      return next;
+    });
+    scrollToDetailCard();
   };
 
   const handlePrevService = () => {
-    setActiveTab((prev) => (prev - 1 + servicesData.length) % servicesData.length);
+    setActiveTab((prev) => {
+      const next = (prev - 1 + servicesData.length) % servicesData.length;
+      return next;
+    });
+    scrollToDetailCard();
+  };
+
+  // Manejo de eventos Touch para Swipe horizontal en móvil
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartXRef.current || !touchEndXRef.current) return;
+    const distance = touchStartXRef.current - touchEndXRef.current;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      handleNextService();
+    } else if (distance < -minSwipeDistance) {
+      handlePrevService();
+    }
+
+    touchStartXRef.current = 0;
+    touchEndXRef.current = 0;
   };
 
   const renderServicePreview = () => {
@@ -201,7 +241,7 @@ export default function Services() {
                   <div className="text-sm font-bold text-cyan-400">
                     {t('Potencia tu negocio', 'Boost your business')}
                   </div>
-                  <p className="text-[11px] opacity-80 leading-relaxed">
+                  <p className="text-[11px] opacity-80 leading-relaxed text-justify">
                     {t('Desarrollamos soluciones digitales a medida con tecnología moderna.', 'We develop custom digital solutions with modern technology.')}
                   </p>
                   <div className="pt-1 flex gap-2">
@@ -252,7 +292,7 @@ export default function Services() {
             <div className="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
               {chatMessages.map((msg, idx) => (
                 <div key={idx} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[80%] p-3 rounded-2xl leading-relaxed ${
+                  <div className={`max-w-[80%] p-3 rounded-2xl leading-relaxed text-justify ${
                     msg.sender === 'user'
                       ? 'bg-cyan-600 text-white rounded-br-none'
                       : 'bg-slate-800 text-slate-200 border border-slate-700/50 rounded-bl-none'
@@ -364,8 +404,8 @@ export default function Services() {
               {appScreen === 'feed' ? (
                 <div className="space-y-2">
                   <div className="text-[10px] font-bold text-cyan-400">App Feed</div>
-                  <div className="p-2 bg-slate-800 rounded-lg text-[9px] text-slate-300">Notificación Push recibida 🚀</div>
-                  <div className="p-2 bg-slate-800 rounded-lg text-[9px] text-slate-300">Nuevas funciones disponibles</div>
+                  <div className="p-2 bg-slate-800 rounded-lg text-[9px] text-slate-300 text-justify">Notificación Push recibida 🚀</div>
+                  <div className="p-2 bg-slate-800 rounded-lg text-[9px] text-slate-300 text-justify">Nuevas funciones disponibles</div>
                 </div>
               ) : (
                 <div className="text-center space-y-2 py-4">
@@ -388,7 +428,7 @@ export default function Services() {
             {activeService.highlightsKey.map((featureKey, i) => (
               <div key={i} className="flex items-center gap-3.5 p-4 rounded-2xl border border-glass-border bg-btn-sec-bg shadow-sm backdrop-blur-md">
                 <HiOutlineCheckCircle className="w-5 h-5 text-badge-text shrink-0" />
-                <span className="text-sm font-bold text-text-heading">
+                <span className="text-sm font-bold text-text-heading text-justify">
                   {t(featureKey, activeService.highlightsEn[i] || featureKey)}
                 </span>
               </div>
@@ -434,7 +474,7 @@ export default function Services() {
             )}
           </h2>
 
-          <p className="text-sm sm:text-base 2xl:text-xl text-text-muted max-w-xl font-normal leading-relaxed">
+          <p className="text-sm sm:text-base 2xl:text-xl text-text-muted max-w-xl font-normal leading-relaxed text-justify">
             {t(servicesHeaderData.subtitleKey, servicesHeaderData.subtitleEn)}
           </p>
         </div>
@@ -485,7 +525,7 @@ export default function Services() {
                       )}
                     </div>
 
-                    <p className="text-sm text-text-muted line-clamp-2 leading-relaxed font-normal opacity-90">
+                    <p className="text-sm text-text-muted line-clamp-2 leading-relaxed font-normal opacity-90 text-justify">
                       {t(service.descriptionKey, service.descriptionEn)}
                     </p>
                   </div>
@@ -529,7 +569,10 @@ export default function Services() {
                 <button
                   key={idx}
                   type="button"
-                  onClick={() => setActiveTab(idx)}
+                  onClick={() => {
+                    setActiveTab(idx);
+                    scrollToDetailCard();
+                  }}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     activeTab === idx ? 'w-6 bg-badge-text' : 'w-2 bg-glass-border'
                   }`}
@@ -540,7 +583,11 @@ export default function Services() {
           </div>
 
           <div 
+            ref={detailCardRef}
             id="service-detail-card" 
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             className="lg:col-span-7 lg:sticky lg:top-24 flex flex-col justify-between rounded-3xl border bg-bg-card border-glass-border p-6 sm:p-8 md:p-10 backdrop-blur-xl min-h-[540px] relative overflow-hidden shadow-2xl transition-all duration-300 w-full"
           >
             {activeService.image && (
@@ -608,7 +655,7 @@ export default function Services() {
                   {renderServicePreview()}
 
                   {activeService.longDescriptionKey && activeService.longDescriptionKey.length > 0 && (
-                    <div className="mt-8 space-y-4 pt-6 border-t border-glass-border text-base sm:text-lg text-foreground font-normal leading-relaxed opacity-90">
+                    <div className="mt-8 space-y-4 pt-6 border-t border-glass-border text-base sm:text-lg text-foreground font-normal leading-relaxed opacity-90 text-justify">
                       {activeService.longDescriptionKey.map((paragraph, pIdx) => (
                         <p key={pIdx}>
                           {t(paragraph, activeService.longDescriptionEn?.[pIdx] || paragraph)}

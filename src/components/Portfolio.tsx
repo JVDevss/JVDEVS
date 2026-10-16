@@ -35,11 +35,22 @@ export default function PortfolioInverted() {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  const touchStartXRef = useRef<number>(0);
+  const touchEndXRef = useRef<number>(0);
+
   const filteredProjects = useMemo(() => {
     return selectedCategory === 'all'
       ? portfolioData.projects
       : portfolioData.projects.filter((p: PortfolioProject) => p.category === selectedCategory);
   }, [selectedCategory]);
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: portfolioData.projects.length };
+    portfolioData.projects.forEach((p: PortfolioProject) => {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
 
   useEffect(() => {
     if (filteredProjects.length > 0) {
@@ -71,6 +82,43 @@ export default function PortfolioInverted() {
     setActiveProject(project);
     setMediaTab('images');
   }, []);
+
+  const handleNextProject = useCallback(() => {
+    if (filteredProjects.length <= 1) return;
+    const currentIndex = filteredProjects.findIndex((p) => p.id === activeProject?.id);
+    const nextIndex = (currentIndex + 1) % filteredProjects.length;
+    handleSelectProject(filteredProjects[nextIndex]);
+  }, [filteredProjects, activeProject, handleSelectProject]);
+
+  const handlePrevProject = useCallback(() => {
+    if (filteredProjects.length <= 1) return;
+    const currentIndex = filteredProjects.findIndex((p) => p.id === activeProject?.id);
+    const prevIndex = (currentIndex - 1 + filteredProjects.length) % filteredProjects.length;
+    handleSelectProject(filteredProjects[prevIndex]);
+  }, [filteredProjects, activeProject, handleSelectProject]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartXRef.current || !touchEndXRef.current) return;
+    const distance = touchStartXRef.current - touchEndXRef.current;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      handleNextProject();
+    } else if (distance < -minSwipeDistance) {
+      handlePrevProject();
+    }
+
+    touchStartXRef.current = 0;
+    touchEndXRef.current = 0;
+  };
 
   const handleSelectThumbnail = useCallback((imgUrl: string) => {
     if (!activeProject) return;
@@ -209,31 +257,55 @@ export default function PortfolioInverted() {
             </span>
           </h2>
 
-          <p className="text-sm sm:text-base 2xl:text-xl text-text-muted max-w-2xl font-normal leading-relaxed">
+          <p className="text-sm sm:text-base 2xl:text-xl text-text-muted max-w-2xl font-normal leading-relaxed text-justify">
             {t(portfolioData.descriptionKey, portfolioData.descriptionEn)}
           </p>
         </div>
 
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
-          {portfolioData.categories.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setSelectedCategory(cat.key)}
-              className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all duration-300 border ${
-                selectedCategory === cat.key
-                  ? 'bg-badge-text text-bg-primary border-transparent shadow-md'
-                  : 'bg-bg-card text-text-muted border-glass-border hover:text-text-heading'
-              }`}
-            >
-              {t(cat.labelEs, cat.labelEn)}
-            </button>
-          ))}
+          {portfolioData.categories.map((cat) => {
+            const count = categoryCounts[cat.key] || 0;
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setSelectedCategory(cat.key)}
+                className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all duration-300 border flex items-center gap-2 ${
+                  selectedCategory === cat.key
+                    ? 'bg-badge-text text-bg-primary border-transparent shadow-md'
+                    : 'bg-bg-card text-text-muted border-glass-border hover:text-text-heading'
+                }`}
+              >
+                <span>{t(cat.labelEs, cat.labelEn)}</span>
+                <span className={`px-1.5 py-0.5 text-[10px] rounded-full font-mono ${
+                  selectedCategory === cat.key 
+                    ? 'bg-bg-primary/20 text-bg-primary' 
+                    : 'bg-btn-sec-bg text-text-muted border border-btn-sec-border'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-8 lg:order-1 order-2">
+          
+          <div 
+            className="lg:col-span-8 lg:order-1 order-2 w-full"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {activeProject && (
-              <div className="p-6 sm:p-8 2xl:p-10 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl transition-all">
+              <div className="p-6 sm:p-8 2xl:p-10 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl transition-all relative">
+                
+                <div className="flex lg:hidden items-center justify-between text-[11px] font-mono text-text-muted mb-4 px-1 bg-btn-sec-bg p-2 rounded-xl border border-glass-border">
+                  <span>← Desliza para cambiar →</span>
+                  <span className="font-bold text-cyan-600 dark:text-cyan-400">
+                    Proyecto {filteredProjects.findIndex(p => p.id === activeProject.id) + 1} de {filteredProjects.length}
+                  </span>
+                </div>
+
                 {activeProject.videoUrl && allProjectImages.length > 0 && (
                   <div className="flex items-center gap-2 mb-6 p-1 rounded-xl bg-btn-sec-bg border border-glass-border w-fit ml-auto">
                     <button
@@ -382,7 +454,7 @@ export default function PortfolioInverted() {
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base 2xl:text-lg text-text-heading leading-relaxed mb-8 font-medium">
+                <p className="text-sm sm:text-base 2xl:text-lg text-text-heading leading-relaxed mb-8 font-medium text-justify">
                   {t(activeProject.descriptionKey, activeProject.descriptionEn)}
                 </p>
 
@@ -442,7 +514,7 @@ export default function PortfolioInverted() {
             )}
           </div>
 
-          <div className="lg:col-span-4 flex flex-col gap-4 lg:order-2 order-1">
+          <div className="lg:col-span-4 hidden lg:flex flex-col gap-4 lg:order-2 order-1">
             <span className="text-xs font-mono font-bold text-text-muted uppercase tracking-wider px-1">
               {t('Selecciona un proyecto', 'Select a project')} ({filteredProjects.length})
             </span>
@@ -594,7 +666,7 @@ export default function PortfolioInverted() {
                   <button
                     key={idx}
                     onClick={() => openLightbox(idx)}
-                    className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all shrink-0 ${
+                    className={`relative w-12 h-12 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
                       activeImageIndex === idx ? 'border-cyan-400 scale-105' : 'border-transparent opacity-50 hover:opacity-100'
                     }`}
                   >

@@ -144,6 +144,7 @@ export default function Footer() {
             </div>
 
             <div className="grid grid-cols-1 gap-3">
+              {/* LLAMADAS TELEFÓNICAS */}
               <div className="bg-bg-card text-text-heading p-4 rounded-2xl flex flex-col gap-3 shadow-sm border border-glass-border">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
@@ -167,6 +168,13 @@ export default function Footer() {
                   )}
                 </div>
 
+                {/* Aviso explícito de fuera de horario */}
+                {!isPhoneAvailable && (
+                  <p className="text-[11px] font-medium text-rose-600 dark:text-rose-400 flex items-center gap-1 -mt-1">
+                    <span>⚠️</span> {t('Fuera de horario de atención', 'Outside of support hours')}
+                  </p>
+                )}
+
                 <div className="flex items-center gap-2 pt-1">
                   {phone1 && (
                     <a
@@ -175,7 +183,7 @@ export default function Footer() {
                       className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${
                         isPhoneAvailable
                           ? 'bg-cyan-600 hover:bg-cyan-500 text-white dark:bg-cyan-500 dark:hover:bg-cyan-400 shadow-sm'
-                          : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                          : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                       }`}
                     >
                       <HiOutlinePhone className="w-3.5 h-3.5" />
@@ -190,7 +198,7 @@ export default function Footer() {
                       className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${
                         isPhoneAvailable
                           ? 'bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20'
-                          : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                          : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                       }`}
                     >
                       <HiOutlinePhone className="w-3.5 h-3.5" />
@@ -200,6 +208,7 @@ export default function Footer() {
                 </div>
               </div>
 
+              {/* WHATSAPP */}
               <div className="bg-bg-card text-text-heading p-4 rounded-2xl flex flex-col gap-3 shadow-sm border border-glass-border">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
@@ -223,6 +232,13 @@ export default function Footer() {
                   )}
                 </div>
 
+                {/* Aviso explícito de fuera de horario */}
+                {!isWhatsappAvailable && (
+                  <p className="text-[11px] font-medium text-rose-600 dark:text-rose-400 flex items-center gap-1 -mt-1">
+                    <span>⚠️</span> {t('Fuera de horario de atención', 'Outside of support hours')}
+                  </p>
+                )}
+
                 <div className="flex items-center gap-2 pt-1">
                   {phone1 && (
                     <a
@@ -233,7 +249,7 @@ export default function Footer() {
                       className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${
                         isWhatsappAvailable
                           ? 'bg-emerald-600 hover:bg-emerald-500 text-white dark:bg-emerald-500 dark:hover:bg-emerald-400 shadow-sm'
-                          : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                          : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                       }`}
                     >
                       <span>{t('Chat Principal', 'Main Chat')}</span>
@@ -250,7 +266,7 @@ export default function Footer() {
                       className={`flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all ${
                         isWhatsappAvailable
                           ? 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
-                          : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                          : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                       }`}
                     >
                       <span>{t('Chat Secundario', 'Secondary Chat')}</span>

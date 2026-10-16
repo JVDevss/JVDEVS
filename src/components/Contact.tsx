@@ -93,6 +93,7 @@ export default function Contact() {
         <div className="p-6 sm:p-10 2xl:p-12 rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
+            {/* WHATSAPP */}
             <div className="p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col justify-between shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full blur-xl pointer-events-none" />
               
@@ -112,9 +113,17 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-text-heading mb-2">
                   WhatsApp
                 </h3>
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-1">
                   {t('Lun - Vie: 8:30 AM - 6:00 PM', 'Mon - Fri: 8:30 AM - 6:00 PM')}
                 </p>
+                
+                {/* Aviso explícito de fuera de horario */}
+                {!isWhatsappAvailable && (
+                  <p className="text-[11px] font-medium text-rose-600 dark:text-rose-400 mb-4 flex items-center gap-1">
+                    <span>⚠️</span> {t('Fuera de horario de atención', 'Outside of support hours')}
+                  </p>
+                )}
+                {isWhatsappAvailable && <div className="mb-4" />}
               </div>
 
               <div className="flex flex-col gap-2.5">
@@ -127,7 +136,7 @@ export default function Contact() {
                     className={`group inline-flex items-center justify-between py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md ${
                       isWhatsappAvailable
                         ? 'bg-emerald-600 hover:bg-emerald-500 text-white dark:bg-emerald-500 dark:hover:bg-emerald-400'
-                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                        : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                     }`}
                   >
                     <span>{t('Chat Principal', 'Main Chat')}</span>
@@ -144,7 +153,7 @@ export default function Contact() {
                     className={`group inline-flex items-center justify-between py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                       isWhatsappAvailable
                         ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20'
-                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                        : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                     }`}
                   >
                     <span>{t('Chat Secundario', 'Secondary Chat')}</span>
@@ -154,6 +163,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* LLAMADA TELEFÓNICA */}
             <div className="p-6 sm:p-8 rounded-2xl border border-glass-border bg-btn-sec-bg flex flex-col justify-between shadow-sm">
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -171,9 +181,17 @@ export default function Contact() {
                 <h3 className="text-xl font-bold text-text-heading mb-2">
                   {t('Llamada Telefónica', 'Phone Call')}
                 </h3>
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-1">
                   {t('Lun - Vie: 8:30 AM - 5:00 PM', 'Mon - Fri: 8:30 AM - 5:00 PM')}
                 </p>
+
+                {/* Aviso explícito de fuera de horario */}
+                {!isPhoneAvailable && (
+                  <p className="text-[11px] font-medium text-rose-600 dark:text-rose-400 mb-4 flex items-center gap-1">
+                    <span>⚠️</span> {t('Fuera de horario de atención', 'Outside of support hours')}
+                  </p>
+                )}
+                {isPhoneAvailable && <div className="mb-4" />}
               </div>
 
               <div className="flex flex-col gap-2.5">
@@ -184,7 +202,7 @@ export default function Contact() {
                     className={`inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md ${
                       isPhoneAvailable
                         ? 'text-white bg-cyan-600 hover:bg-cyan-500 dark:bg-cyan-500 dark:hover:bg-cyan-400'
-                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted pointer-events-none opacity-50 cursor-not-allowed'
+                        : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                     }`}
                   >
                     <HiOutlinePhone className="w-4 h-4" />
@@ -198,7 +216,7 @@ export default function Contact() {
                     className={`inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                       isPhoneAvailable
                         ? 'text-cyan-600 dark:text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20'
-                        : 'bg-neutral-200 dark:bg-neutral-800 text-text-muted border border-transparent pointer-events-none opacity-50 cursor-not-allowed'
+                        : 'bg-rose-500/5 dark:bg-rose-500/10 text-rose-600/70 dark:text-rose-400/70 border border-rose-500/20 dark:border-rose-500/30 pointer-events-none opacity-75 cursor-not-allowed'
                     }`}
                   >
                     <HiOutlinePhone className="w-4 h-4" />
@@ -208,6 +226,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* INSTAGRAM (Siempre disponible) */}
             {instagramUrl && (
               <a
                 href={instagramUrl}

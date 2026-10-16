@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/src/context/LanguageContext';
@@ -21,17 +21,57 @@ export default function About() {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const totalSlides = 4;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const touchStartXRef = useRef<number>(0);
+  const touchEndXRef = useRef<number>(0);
+
+  const scrollToSectionTop = () => {
+    if (sectionRef.current) {
+      const topOffset = sectionRef.current.getBoundingClientRect().top + window.pageYOffset - 80; // Margen superior opcional para padding
+      window.scrollTo({
+        top: topOffset,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % totalSlides);
+    scrollToSectionTop();
   };
 
   const prevSlide = () => {
     setActiveSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    scrollToSectionTop();
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndXRef.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartXRef.current || !touchEndXRef.current) return;
+    const distance = touchStartXRef.current - touchEndXRef.current;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      prevSlide();
+    }
+
+    touchStartXRef.current = 0;
+    touchEndXRef.current = 0;
   };
 
   return (
     <section 
+      ref={sectionRef}
       id="about" 
       className="relative py-16 sm:py-24 md:py-32 2xl:py-40 overflow-hidden bg-bg-primary transition-colors duration-400 selection:bg-badge-text selection:text-bg-primary"
     >
@@ -66,7 +106,12 @@ export default function About() {
           </h2>
         </div>
 
-        <div className="relative rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl overflow-hidden p-8 sm:p-12 md:p-16 min-h-[460px] flex flex-col justify-between">
+        <div 
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative rounded-3xl border bg-bg-card border-glass-border backdrop-blur-2xl shadow-2xl overflow-hidden p-8 sm:p-12 md:p-16 min-h-[460px] flex flex-col justify-between"
+        >
           
           <div className="relative w-full">
             
@@ -187,7 +232,10 @@ export default function About() {
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setActiveSlide(index)}
+                  onClick={() => {
+                    setActiveSlide(index);
+                    scrollToSectionTop();
+                  }}
                   className={`h-2.5 rounded-full transition-all duration-300 ${
                     activeSlide === index 
                       ? 'w-8 bg-cyan-600 dark:bg-cyan-400' 
